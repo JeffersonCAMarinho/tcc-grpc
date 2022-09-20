@@ -1,0 +1,27 @@
+syntax ="proto3";
+
+package filme;
+option go_package = "filmepb";
+
+message Filme  {
+  int32  movieid = 1 ;
+  string title = 2 ;
+  string genres = 3;  
+  int32  userid = 4;
+  double rating = 5  ; 
+  int64  timestamp = 6 ;
+  string tag = 7;
+}
+
+message ReadFilmesResponse {
+  repeated Filme filmes=1; // will have a blog id
+}
+
+message ReadFilmesRequest {
+    
+}
+
+service MoviesService {
+  rpc ListarFilmesGrpc (ReadFilmesRequest) returns ( ReadFilmesResponse) {}; 
+   // return NOT_FOUND if not found
+}
