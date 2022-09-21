@@ -42,7 +42,8 @@ func (server *FilmeServiceServer) ListarFilmesGrpc(ctx context.Context, in *pb.R
 
 	rows, err := server.conn.Query(context.Background(), `select distinct m.movieid, m.title, m.genres, r.userid, r.rating, r.timestamp, t.tag from movies m 
 	inner join ratings r on r.movieid = m.movieid 
-	inner join tags t on t.movieid = m.movieid`)
+	inner join tags t on t.movieid = m.movieid
+	limit 2000`)
 	if err != nil {
 		return nil, err
 	}
@@ -61,7 +62,7 @@ func (server *FilmeServiceServer) ListarFilmesGrpc(ctx context.Context, in *pb.R
 }
 func main() {
 
-	database_url := "postgres://postgres:postgrespw@localhost:55001"
+	database_url := "postgres://postgres:postgres@localhost:5432/movies"
 	conn, err := pgx.Connect(context.Background(), database_url)
 	if err != nil {
 		log.Fatalf("Unable to establish connection: %v", err)
