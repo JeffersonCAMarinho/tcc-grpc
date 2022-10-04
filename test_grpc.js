@@ -12,12 +12,12 @@ export default () => {
   const data = { };
   const response = client.invoke('filme.MoviesService/ListarFilmesGrpc', data);
 
-  check(response, {
-    'status is OK': (r) => r && r.status === grpc.StatusOK,
-  });
+  // check(response, {
+  //   'status is OK': (r) => r && r.status === grpc.StatusOK,
+  // });
 
-  console.log(JSON.stringify(response.message));
+  // console.log(JSON.stringify(response.message));
 
   client.close();
-  sleep(1);
+
 };
