@@ -39,7 +39,7 @@ func (server *FilmeServiceServer) Run() error {
 
 func OpenConnection() *sql.DB {
 	psqlInfo := fmt.Sprintf("host=%s user=%s "+
-		"password=%s dbname=%s sslmode=disable",
+		"password=%s dbname=%s sslmode=require",
 		host, user, password, dbname)
 
 	db, err := sql.Open("postgres", psqlInfo)
