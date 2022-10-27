@@ -63,8 +63,8 @@ func (server *FilmeServiceServer) ListarFilmesGrpc(ctx context.Context, in *pb.R
 	rows, err := db.Query(`select distinct m.movieid, m.title, m.genres, r.userid, r.rating, r.timestamp, t.tag from movies m 
 	inner join ratings r on r.movieid = m.movieid 
 	inner join tags t on t.movieid = m.movieid
-	order by movieid asc
-	limit 1500`)
+	where m.movieid BETWEEN 1 and 21
+	order by movieid asc`)
 	if err != nil {
 		return nil, err
 	}
